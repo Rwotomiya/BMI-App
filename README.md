@@ -58,10 +58,6 @@ This BMI Calculator is a simple desktop application built using Python, Tkinter 
 - `logo.png`: The icon image for the application window.
 - `bmi_results.xlsx`: The Excel file where BMI results are saved.
 
-## Screenshots
-
-![Screenshot](screenshots/screenshot.png)
-
 ## Contributing
 
 Contributions are welcome! Please feel free to submit issues and pull requests.
