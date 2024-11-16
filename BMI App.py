@@ -21,20 +21,23 @@ def clear_entries():
 
 # Function to save BMI data to an Excel file
 def save_to_excel(first_name, last_name, height, weight, age, bmi=None, bmi_category=None):
-    file_name = "bmi_results.xlsx"
-    # Check if the file already exists
-    if os.path.exists(file_name):
-        workbook = load_workbook(file_name)
-        sheet = workbook.active
-    else:
-        workbook = Workbook()
-        sheet = workbook.active
-        # Add headers if creating a new file
-        sheet.append(["First Name", "Last Name", "Height (m)", "Weight (kg)", "Age", "BMI", "Category"])
+    # Ask the user to choose the file location
+    file_path = filedialog.asksaveasfilename(defaultextension=".xlsx", filetypes=[("Excel Files", "*.xlsx")])
 
-    # Append the user data and BMI results
-    sheet.append([first_name, last_name, height, weight, age, round(bmi, 2) if bmi else "", bmi_category if bmi_category else ""])
-    workbook.save(file_name)
+    if file_path:  # Only proceed if the user selected a file path
+        # Check if the file already exists
+        if os.path.exists(file_path):
+            workbook = load_workbook(file_path)
+            sheet = workbook.active
+        else:
+            workbook = Workbook()
+            sheet = workbook.active
+            # Add headers if creating a new file
+            sheet.append(["First Name", "Last Name", "Height (m)", "Weight (kg)", "Age", "BMI", "Category"])
+
+        # Append the user data and BMI results
+        sheet.append([first_name, last_name, height, weight, age, round(bmi, 2) if bmi else "", bmi_category if bmi_category else ""])
+        workbook.save(file_path)
 
 # Function to calculate BMI
 def calculate_bmi():
@@ -161,5 +164,5 @@ calculate_button.bind("<Leave>", on_leave)
 clear_button.bind("<Enter>", on_enter)
 clear_button.bind("<Leave>", on_leave)
 
-# Start the Tkinter event loop
+# Start the application
 window.mainloop()
