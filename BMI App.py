@@ -164,5 +164,5 @@ calculate_button.bind("<Leave>", on_leave)
 clear_button.bind("<Enter>", on_enter)
 clear_button.bind("<Leave>", on_leave)
 
-# Start the application
+# Start the BMI application
 window.mainloop()
